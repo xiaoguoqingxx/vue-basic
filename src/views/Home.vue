@@ -1,18 +1,31 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div>
+      {{ test }}
+    </div>
+    <div>
+      <input v-model="testOne"/>
+      <button @click="change">变更</button>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
+import { mixin } from '../utils/mixin'
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
+  data: ()=>{
+    return{
+      testOne: ''
+    }
+  },
+  mixins: [mixin],
+  methods: {
+    change(){
+      if (this.testOne==='') return
+      this.setOneAction({ key: 'test', content: this.testOne })
+    }
   }
 }
 </script>
